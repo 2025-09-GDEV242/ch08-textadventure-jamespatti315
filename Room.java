@@ -12,14 +12,26 @@ import java.util.Iterator;
  * connected to other rooms via exits.  For each existing exit, the room 
  * stores a reference to the neighboring room.
  * 
+ * 
+ * 
+ * 
  * @author  Michael Kölling and David J. Barnes
  * @version 2016.02.29
+ * 
+ * 
+ * @new author James Patti
+ * @version 11/7/25
+ * 
+ * here in rooms lets make new hashmap or some other list for the items,items got a weight and a description and are described when searching
+ * the rooms.
  */
 
 public class Room 
 {
     private String description;
     private HashMap<String, Room> exits;        // stores exits of this room.
+    
+    
 
     /**
      * Create a room described "description". Initially, it has

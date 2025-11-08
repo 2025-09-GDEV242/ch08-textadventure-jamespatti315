@@ -13,6 +13,16 @@
  * 
  * @author  Michael Kölling and David J. Barnes
  * @version 2016.02.29
+ * 
+ * 
+ * new @author James Patti
+ * @new version 2025.07.11
+ * 
+ * ok lets go small and add a few new rooms
+ * 
+ * 1st a basic test room (1/8 to add)
+ * 
+ * 
  */
 
 public class Game 
@@ -31,10 +41,17 @@ public class Game
 
     /**
      * Create all the rooms and link their exits together.
+     * 
+     * lets make  roughly 8 new rooms then add items to actually win the game
+     * (maybe also a "you win room?")
+     * 
+     * also need to make a cross-directional (north east or such)
+     * 
+     * 1st room test
      */
     private void createRooms()
     {
-        Room outside, theater, pub, lab, office;
+        Room outside, theater, pub, lab, office,test;
       
         // create the rooms
         outside = new Room("outside the main entrance of the university");
@@ -42,11 +59,16 @@ public class Game
         pub = new Room("in the campus pub");
         lab = new Room("in a computing lab");
         office = new Room("in the computing admin office");
+        test = new Room("this room is a test,if your here then goodjob!");
         
         // initialise room exits
+        outside.setExit("north",test);
         outside.setExit("east", theater);
         outside.setExit("south", lab);
         outside.setExit("west", pub);
+        
+        
+        test.setExit("south",outside);
 
         theater.setExit("west", outside);
 
