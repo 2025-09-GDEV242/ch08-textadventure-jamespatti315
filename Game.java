@@ -59,7 +59,7 @@ public class Game
     
     private void createRooms()
     {
-        Room outside, theater, pub, lab, office,test;
+        Room outside, theater, pub, lab, office,city,evilLab;
       
         // create the rooms
         outside = new Room("outside the main entrance of the university");
@@ -67,18 +67,19 @@ public class Game
         pub = new Room("in the campus pub");
         lab = new Room("in a computing lab");
         office = new Room("in the computing admin office");
-        test = new Room("this room is a test,if your here then goodjob!");
+        city = new Room("entering a large city, its looks pretty crazy!");  //from outside, north!
+        evilLab = new Room("in a odd and mysterious labatory, odd machines and chemicals buzz next to computers."); //from admin by south
         
         
         
         // initialise room exits
-        outside.setExit("north",test);
+        outside.setExit("north",city);
         outside.setExit("east", theater);
         outside.setExit("south", lab);
         outside.setExit("west", pub);
         
         
-        test.setExit("south",outside);
+        city.setExit("south",outside);
 
         theater.setExit("west", outside);
 
@@ -88,6 +89,9 @@ public class Game
         lab.setExit("east", office);
 
         office.setExit("west", lab);
+        office.setExit("south",evilLab);
+        
+        evilLab.setExit("north",office);
 
         currentRoom = outside;  // start game outside
     }
