@@ -29,6 +29,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
+    private Item defaultItem;
         
     /**
      * Create the game and initialise its internal map.
@@ -48,7 +49,14 @@ public class Game
      * also need to make a cross-directional (north east or such)
      * 
      * 1st room test
+     * 
+     * 
+     * 
+     * //lets also see.. we should be able to make and call for items via other object!
+     * 
      */
+    
+    
     private void createRooms()
     {
         Room outside, theater, pub, lab, office,test;
@@ -60,6 +68,8 @@ public class Game
         lab = new Room("in a computing lab");
         office = new Room("in the computing admin office");
         test = new Room("this room is a test,if your here then goodjob!");
+        
+        
         
         // initialise room exits
         outside.setExit("north",test);
@@ -81,6 +91,31 @@ public class Game
 
         currentRoom = outside;  // start game outside
     }
+    
+    /**
+     * here I will create the make items method, this will be similer to above create room method, it will make a set of items
+     * with some  weight and description.
+     */
+    
+    private void createItems(){
+        //create the items to add to rooms below, we need a string and its weight (a int)
+       Item nothing = new Item("its a whole lotta nothing! Despite being nothing it has a weight of 1",1);
+        
+        
+        
+        
+        
+        
+        
+        
+    
+        
+        
+    }
+    
+    
+    
+    
 
     /**
      *  Main play routine.  Loops until end of play.

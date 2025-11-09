@@ -14,15 +14,15 @@
 public class Item
 {
     // instance variables - replace the example below with your own
-    private String description; //a description of a item
+    private String itemDescription = "this a test, if reading you messed up!"; //a description of a item
     private int weight; //how much a item weights
 
     /**
      * Constructor for objects of class Item, a basic description and a weight of 1
      */
-    public Item(String description)
+    public Item(String itemDescription,int weight)
     {
-        this.description = description;
+        this.itemDescription = itemDescription;
         weight = 1;
         
     }
@@ -34,6 +34,6 @@ public class Item
     public String shortItemDescription()
     {
         
-        return description;
+        return itemDescription;
     }
 }
