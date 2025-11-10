@@ -59,7 +59,7 @@ public class Game
     
     private void createRooms()
     {
-        Room outside, theater, pub, lab, office,city,evilLab;
+        Room outside, theater, pub, lab, office,city,evilLab,drunkHell,play;
       
         // create the rooms
         outside = new Room("outside the main entrance of the university");
@@ -69,7 +69,8 @@ public class Game
         office = new Room("in the computing admin office");
         city = new Room("entering a large city, its looks pretty crazy!");  //from outside, north!
         evilLab = new Room("in a odd and mysterious labatory, odd machines and chemicals buzz next to computers."); //from admin by south
-        
+        drunkHell = new Room("in hell, your drunken escapades have sent you straight into that pink elephants sequence from dumbo!"); //access from  west of campus pub
+        play = new Room("in the play! show the audience your acting skills and break a leg!");
         
         
         // initialise room exits
@@ -82,8 +83,11 @@ public class Game
         city.setExit("south",outside);
 
         theater.setExit("west", outside);
+        theater.setExit("east",play);
 
         pub.setExit("east", outside);
+        pub.setExit("west",drunkHell);
+        
 
         lab.setExit("north", outside);
         lab.setExit("east", office);
@@ -92,6 +96,10 @@ public class Game
         office.setExit("south",evilLab);
         
         evilLab.setExit("north",office);
+        
+        drunkHell.setExit("east",pub);
+        
+        play.setExit("west",theater);
 
         currentRoom = outside;  // start game outside
     }
@@ -175,10 +183,16 @@ public class Game
             case GO:
                 goRoom(command);
                 break;
+                
+                //lets work on LOOk!
+                case LOOK:
+                    lookAround(command);
+                    break;
 
             case QUIT:
                 wantToQuit = quit(command);
                 break;
+            
         }
         return wantToQuit;
     }
@@ -224,6 +238,18 @@ public class Game
             System.out.println(currentRoom.getLongDescription());
         }
     }
+    
+    
+    /**ok here lets implment and create a new method using the LOOK command word which will give a look around for a test room
+     * It will pass to main and tkes information set up in the other enum command objects to function fully.
+     */
+    
+    private void lookAround(Command command){
+            System.out.println("You begin looking around...");
+            System.out.println(currentRoom.getLongDescription());
+        
+    }
+    
 
     /** 
      * "Quit" was entered. Check the rest of the command to see
