@@ -1,3 +1,4 @@
+import java.util.Stack;
 /**
  *  This class is the main class of the "World of Zuul" application. 
  *  "World of Zuul" is a very simple, text based adventure game.  Users 
@@ -30,6 +31,7 @@ public class Game
     private Parser parser;
     private Room currentRoom;
     private Item defaultItem;
+    private Stack<Room>lastRooms = new Stack<>();  //a stack of last rooms, with it we can travel back up any amount of rooms!
         
     /**
      * Create the game and initialise its internal map.
@@ -188,6 +190,11 @@ public class Game
                 case LOOK:
                     lookAround(command);
                     break;
+                    
+                    //here is the back command
+                    case BACK:
+                        goBack(command);
+                        break;
 
             case QUIT:
                 wantToQuit = quit(command);
@@ -234,6 +241,7 @@ public class Game
             System.out.println("There is no door!");
         }
         else {
+            lastRooms.push(currentRoom); //ok must need this here as nothing pushed till goRoom invoked! my dyslexia kills me.
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
         }
@@ -247,6 +255,28 @@ public class Game
     private void lookAround(Command command){
             System.out.println("You begin looking around...");
             System.out.println(currentRoom.getLongDescription());
+        
+    }
+    
+    
+    /**
+     * ok here were gonna create the function for the BACK command,  we need  to keep going through the last room , with added protection of a 
+     * thing for if back hit but no previoius rooms have been entered.
+     * this like above
+     * @param Command command
+     * 
+     */
+    
+    private void goBack(Command command){
+        
+         if (lastRooms.isEmpty()) {
+            System.out.println("There is nowhere to go back to!");
+        }
+        else{
+            
+            currentRoom = lastRooms.pop();   //populate the lastRooms list with all previoiusly visitied rooms~
+            System.out.println ("You turn around and start heading back..." + currentRoom.getLongDescription());
+        }
         
     }
     

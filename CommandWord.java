@@ -7,13 +7,15 @@
  * 
  * 
  * need to add a LOOK command,
+ * add a BACK command ( partial implement of 1 room back and then the full goes back all..plus a thing so if no backs it just says there 
+ * no where to go back too
  * 
  */
 public enum CommandWord
 {
     // A value for each command word along with its
     // corresponding user interface string.
-    GO("go"), QUIT("quit"), HELP("help"), LOOK("look"),UNKNOWN("?");
+    GO("go"), QUIT("quit"), HELP("help"), LOOK("look"),BACK("back"),UNKNOWN("?");
     
     // The command string.
     private String commandString;
