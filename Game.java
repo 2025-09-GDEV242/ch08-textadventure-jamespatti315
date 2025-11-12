@@ -1,4 +1,5 @@
 import java.util.Stack;
+import java.util.ArrayList;
 /**
  *  This class is the main class of the "World of Zuul" application. 
  *  "World of Zuul" is a very simple, text based adventure game.  Users 
@@ -32,13 +33,17 @@ public class Game
     private Room currentRoom;
     private Item defaultItem;
     private Stack<Room>lastRooms = new Stack<>();  //a stack of last rooms, with it we can travel back up any amount of rooms!
+    
         
     /**
      * Create the game and initialise its internal map.
+     * 
+     * added the as of yet not done items, it easy and can work peice by peice
      */
     public Game() 
     {
         createRooms();
+        createItems();
         parser = new Parser();
     }
 

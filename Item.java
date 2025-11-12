@@ -14,17 +14,28 @@
 public class Item
 {
     // instance variables - replace the example below with your own
-    private String itemDescription = "this a test, if reading you messed up!"; //a description of a item
+    private String itemName = "i'm a item! describe meeeee!"; //a name  of a item, changing and makinf descriptions seperate!
+    private String itemDescription = "this a test description! detail me!"; 
     private int weight; //how much a item weights
 
     /**
      * Constructor for objects of class Item, a basic description and a weight of 1
-     */
-    public Item(String itemDescription,int weight)
+     * lets change some thing! alt to itemName
+     */  
+    public Item(String itemName,int weight)
     {
-        this.itemDescription = itemDescription;
+        this.itemName = itemName;
         weight = 1;
         
+    }
+    
+    /**looks like we need a getter for the item names
+     * a basic  getter
+     * @returns itemName
+     */
+    
+    public String  getName(){
+        return itemName;
     }
 
     /**

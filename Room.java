@@ -1,6 +1,8 @@
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.ArrayList;
+
 
 /**
  * Class Room - a room in an adventure game.
@@ -30,6 +32,7 @@ public class Room
 {
     private String description;
     private HashMap<String, Room> exits;        // stores exits of this room.
+    private ArrayList<Item> items = new ArrayList<>(); // need this here for inventory.
     
     
 
@@ -44,6 +47,36 @@ public class Room
         this.description = description;
         exits = new HashMap<>();
     }
+    /**
+     * Here lets add so rooms can actually have a item placed in them, 
+     * will accept 
+     * @param items items so needs something of the items class
+     * this basically adds a item into the array, allowing us to put them later,
+     */
+    
+    public void addItem(Item item){
+        items.add(item);
+        }
+          
+    /**
+     * next more complicated task of removing items,
+     * this will receive 
+     * @param  String itemName; allowing us to use that to remove a item from above  array.
+     * 
+     */ 
+    
+     public Item removeItem(String itemName){ 
+         for (int i = 0; i < items.size(); i++) {
+        Item item = items.get(i);
+        if (item.getName().equalsIgnoreCase(itemName)) {
+            items.remove(i); // safe removal by index
+            return item;
+        }
+    }
+    return null; // if no items,
+}
+    
+    
 
     /**
      * Define an exit from this room.
