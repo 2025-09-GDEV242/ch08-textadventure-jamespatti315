@@ -57,6 +57,27 @@ public class Room
     public void addItem(Item item){
         items.add(item);
         }
+        
+        /**
+         * ok need to make a special method to return the string just so I can see if there a fucking item in the room wut the fuck 
+         * 
+         * @return a string of text marking room as having no items,
+         * if condition for it is right and we have items placed in a room.
+         * @return a string of the items.
+         */
+        
+        public String getItemsString() {
+    if(items.isEmpty()) {
+        return "There is nothing here,zilch,go somewhere else!";
+    }
+    StringBuilder itemList = new StringBuilder("You find...");
+    for(Item item : items) {
+        itemList.append(" ").append(item.getName());
+    }
+    return itemList.toString();
+}
+        
+        
           
     /**
      * next more complicated task of removing items,

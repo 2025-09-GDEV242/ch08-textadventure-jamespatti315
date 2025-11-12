@@ -47,4 +47,13 @@ public class Item
         
         return itemDescription;
     }
+    
+    /**
+     * basic getter for the weight, 
+     * @returns int weight of class:Item
+     */
+    public int getWeight(){
+        return weight;
+    }
+    
 }

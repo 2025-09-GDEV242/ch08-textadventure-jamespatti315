@@ -33,6 +33,7 @@ public class Game
     private Room currentRoom;
     private Item defaultItem;
     private Stack<Room>lastRooms = new Stack<>();  //a stack of last rooms, with it we can travel back up any amount of rooms!
+    private Room outside, theater, pub, lab, office, city, evilLab, drunkHell, play;  //making them a field so scope not ruining me
     
         
     /**
@@ -66,10 +67,10 @@ public class Game
     
     private void createRooms()
     {
-        Room outside, theater, pub, lab, office,city,evilLab,drunkHell,play;
+       
       
         // create the rooms
-        outside = new Room("outside the main entrance of the university");
+        outside = new Room ("outside the main entrance of the university");
         theater = new Room("in a lecture theater");
         pub = new Room("in the campus pub");
         lab = new Room("in a computing lab");
@@ -117,19 +118,22 @@ public class Game
      */
     
     private void createItems(){
-        //create the items to add to rooms below, we need a string and its weight (a int)
-       Item nothing = new Item("its a whole lotta nothing! Despite being nothing it has a weight of 1",1);
-        
-        
-        
-        
-        
-        
-        
         
     
+        //create the items to add to rooms below, we need a string and its weight (a int)
+       Item nothing = new Item("..its a whole lotta nothing! Despite being nothing it has a weight of 1",1);  //add to outside
+       Item sobriety  = new Item ("...Sobriety finally free from your own drunken escapades!: has weight of 30",30);  //add to drunk hell
+       Item kingYellow = new Item ("...The king in yellowits a liteary reference! weight of 5",5);  //add to play
+       Item herb = new Item ("...a green health herb its a video game reference! its has weight of 2",2);  //add to evilLab
         
-        
+       // now lets add items to the rooms
+       
+       outside.addItem(nothing);
+       drunkHell.addItem(sobriety);
+       play.addItem(kingYellow);
+       evilLab.addItem(herb);
+       
+       
     }
     
     
@@ -257,11 +261,12 @@ public class Game
      * It will pass to main and tkes information set up in the other enum command objects to function fully.
      */
     
-    private void lookAround(Command command){
+    private  void lookAround(Command command){
             System.out.println("You begin looking around...");
-            System.out.println(currentRoom.getLongDescription());
-        
-    }
+            System.out.print(currentRoom.getLongDescription());
+            System.out.println(currentRoom.getItemsString());
+            }
+
     
     
     /**
