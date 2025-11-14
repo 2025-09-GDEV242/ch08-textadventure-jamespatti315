@@ -1,6 +1,8 @@
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.ArrayList;
+
 
 /**
  * Class Room - a room in an adventure game.
@@ -12,14 +14,27 @@ import java.util.Iterator;
  * connected to other rooms via exits.  For each existing exit, the room 
  * stores a reference to the neighboring room.
  * 
+ * 
+ * 
+ * 
  * @author  Michael Kölling and David J. Barnes
  * @version 2016.02.29
+ * 
+ * 
+ * @new author James Patti
+ * @version 11/7/25
+ * 
+ * here in rooms lets make new hashmap or some other list for the items,items got a weight and a description and are described when searching
+ * the rooms.
  */
 
 public class Room 
 {
     private String description;
     private HashMap<String, Room> exits;        // stores exits of this room.
+    private ArrayList<Item> items = new ArrayList<>(); // need this here for inventory.
+    
+    
 
     /**
      * Create a room described "description". Initially, it has
@@ -32,6 +47,57 @@ public class Room
         this.description = description;
         exits = new HashMap<>();
     }
+    /**
+     * Here lets add so rooms can actually have a item placed in them, 
+     * will accept 
+     * @param items items so needs something of the items class
+     * this basically adds a item into the array, allowing us to put them later,
+     */
+    
+    public void addItem(Item item){
+        items.add(item);
+        }
+        
+        /**
+         * ok need to make a special method to return the string just so I can see if there a fucking item in the room wut the fuck 
+         * 
+         * @return a string of text marking room as having no items,
+         * if condition for it is right and we have items placed in a room.
+         * @return a string of the items.
+         */
+        
+        public String getItemsString() {
+    if(items.isEmpty()) {
+        return "There is nothing here,zilch,go somewhere else!";
+    }
+    StringBuilder itemList = new StringBuilder("You find...");
+    for(Item item : items) {
+        itemList.append(" ").append(item.getName());
+    }
+    return itemList.toString();
+}
+        
+        
+          
+    /**
+     * next more complicated task of removing items,
+     * this will receive 
+     * @param  String itemName; allowing us to use that to remove a item from above  array.
+     * 
+     */ 
+    
+     public Item removeItem(String itemName){ 
+         for (int i = 0; i < items.size(); i++) {
+        Item item = items.get(i);
+        if (item.getName().equalsIgnoreCase(itemName)) {
+            items.remove(i); // safe removal by index
+            return item;
+        }
+    }
+    return null; // if no items,
+}
+    
+    
 
     /**
      * Define an exit from this room.
