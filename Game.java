@@ -24,6 +24,8 @@ import java.util.ArrayList;
  * 
  * 1st a basic test room (1/8 to add)
  * 
+ * about done.!
+ * 
  * 
  */
 
@@ -40,7 +42,7 @@ public class Game
     /**
      * Create the game and initialise its internal map.
      * 
-     * added the as of yet not done items, it easy and can work peice by peice
+     * added  a few other things, namely a instiantior for items, and a person entity so everything called correctly.
      */
     public Game() 
     {
@@ -53,17 +55,9 @@ public class Game
     /**
      * Create all the rooms and link their exits together.
      * 
-     * lets make  roughly 8 new rooms then add items to actually win the game
-     * (maybe also a "you win room?")
+     * made all rooms, grammer wonky but tired.
      * 
-     * also need to make a cross-directional (north east or such)
-     * 
-     * 1st room test
-     * 
-     * 
-     * 
-     * //lets also see.. we should be able to make and call for items via other object!
-     * 
+
      */
     
     
@@ -117,6 +111,8 @@ public class Game
     /**
      * here I will create the make items method, this will be similer to above create room method, it will make a set of items
      * with some  weight and description.
+     * 
+     * created a set of objects, alas no real mechanicsm and weight doesn;t do anything but got another thing and studies.
      */
     
     private void createItems(){
