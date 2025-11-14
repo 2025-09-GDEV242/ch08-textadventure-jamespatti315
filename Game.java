@@ -34,6 +34,7 @@ public class Game
     private Item defaultItem;
     private Stack<Room>lastRooms = new Stack<>();  //a stack of last rooms, with it we can travel back up any amount of rooms!
     private Room outside, theater, pub, lab, office, city, evilLab, drunkHell, play;  //making them a field so scope not ruining me
+    private Person player;  //there now should work.
     
         
     /**
@@ -46,6 +47,7 @@ public class Game
         createRooms();
         createItems();
         parser = new Parser();
+        player = new Person();
     }
 
     /**
@@ -121,10 +123,10 @@ public class Game
         
     
         //create the items to add to rooms below, we need a string and its weight (a int)
-       Item nothing = new Item("..its a whole lotta nothing! Despite being nothing it has a weight of 1",1);  //add to outside
-       Item sobriety  = new Item ("...Sobriety finally free from your own drunken escapades!: has weight of 30",30);  //add to drunk hell
-       Item kingYellow = new Item ("...The king in yellowits a liteary reference! weight of 5",5);  //add to play
-       Item herb = new Item ("...a green health herb its a video game reference! its has weight of 2",2);  //add to evilLab
+       Item nothing = new Item("nothing","..its a whole lotta nothing! Despite being nothing it has a weight of 1",1);  //add to outside
+       Item sobriety  = new Item ("sobriety","...Sobriety finally free from your own drunken escapades!: has weight of 30",30);  //add to drunk hell
+       Item kingYellow = new Item ("kinginyellow","...The king in yellow...its a liteary reference! weight of 5",5);  //add to play
+       Item herb = new Item ("herb","...a green health herb its a video game reference! its has weight of 2",2);  //add to evilLab
         
        // now lets add items to the rooms
        
@@ -204,6 +206,25 @@ public class Game
                     case BACK:
                         goBack(command);
                         break;
+                        
+                        //here the pickuo
+                        case PICKUP:
+                             if (!command.hasSecondWord()) {
+                    System.out.println("Pick up what?");
+                } else {
+                    pickupItem(command.getSecondWord());
+                }
+                break;
+                
+                case DROP:
+                if (!command.hasSecondWord()) {
+                    System.out.println("Drop what?");
+                } else {
+                    dropItem(command.getSecondWord());
+                }
+                break;
+                        
+                        
 
             case QUIT:
                 wantToQuit = quit(command);
@@ -290,6 +311,40 @@ public class Game
         
     }
     
+    /**here lets work on the final command methods, first is pickup of a item, 
+     * this method takes the
+     * @parem string name of a  item "itemName" and removes the item from the room and shoves it into the players inventory.
+     * if no item to pick up then returns nothing, basically no changes needed
+     * 
+     * @parem string ItemName
+     * @return null or puts item in new inventory
+     */
+    
+    private void pickupItem(String itemName){
+        Item item = currentRoom.removeItem(itemName); 
+        if (item == null){
+            System.out.println("There is nothing to grab numbskull!");
+            return;
+        }
+        player.addItem(item);                          // add to player's inventory
+    System.out.println("You grab a... " + item.getName() + ".");
+        
+    }
+    
+    /**
+     * this method works likve above but drops a item, 
+     * @parem String itemname.
+     * @returns nothing is no item to drop. 
+     */
+    private void dropItem(String itemName){
+        Item item = player.removeItem(itemName);
+        if (item == null){
+            System.out.println("Nothing to drop");
+            return;
+        }
+        currentRoom.addItem(item);
+        System.out.println("You Drop" + item.getName() );
+    }
 
     /** 
      * "Quit" was entered. Check the rest of the command to see

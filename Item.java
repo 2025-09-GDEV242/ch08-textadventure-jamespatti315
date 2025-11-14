@@ -22,10 +22,11 @@ public class Item
      * Constructor for objects of class Item, a basic description and a weight of 1
      * lets change some thing! alt to itemName
      */  
-    public Item(String itemName,int weight)
+    public Item(String itemName,String itemdescription,int weight)
     {
-        this.itemName = itemName;
-        weight = 1;
+       this.itemName = itemName;
+    this.itemDescription = itemDescription;
+    this.weight = weight;
         
     }
     
